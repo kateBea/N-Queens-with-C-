@@ -1,4 +1,4 @@
-# N-Queens-with-C-
+# N-Queens-with-Cpp
 n queens solver implemented using class in c++
 
 Summary: 
