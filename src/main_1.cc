@@ -15,19 +15,16 @@ public:
         {}
     
     /*position of m_Main_diag ocuppied by queen at row i, column j*/
-    int main_diag_pos(int i, int j) {return (m_Size-j-1) + i;}
+    int main_diag_pos(int i, int j) { return (m_Size-j-1) + i; }
 
     /*posituion of m_Second_diag ocupied by queen at row i, column j*/
-    int seco_diag_pos(int i, int j) {return i + j;}
+    int seco_diag_pos(int i, int j) { return i + j; }
 
-     /*number of solutions*/
-    unsigned int total() const {return m_Solutions;}
+    unsigned int total() const { return m_Solutions; }
 
-    /*solve queen problem*/
-    void solve() {solve(0);}
+    void solve() { solve(0); }
 
 private:
-    /*number of solution*/
     void solve(unsigned int level)
     {
         if (level == m_Size) ++m_Solutions;
@@ -60,19 +57,31 @@ private:
     unsigned int        m_Solutions;    //total amount of solutions for given board size
     unsigned int        m_Size;         //size of the board
     std::vector<int>    m_Sol;          //store a possible solution
-    std::vector<bool>   m_Col;          //true if theres queen at colum i ( 0 <= i < m_Col.size())
+    std::vector<bool>   m_Col;          //true if theres queen at colum i (0 <= i < m_Col.size())
     std::vector<bool>   m_Main_diag;    //store quens at main diagonal
     std::vector<bool>   m_Second_diag;  //store queens at secondary diagonal
 };
 
-int main(int, char**)
+const char *str = 
+R"HERE(    usage: main_1 [NUMBER_OF_QUEENS]
+    program need only two parameters\n
+)HERE";
+
+int main(int argc, char **argv)
 {
-    int user_input;
-    std::cin >> user_input;
-    Queen _queen(user_input);
+    if (argc != 2)
+    {
+        std::cout << str;
+        return 0;
+    }
 
-    _queen.solve();
-    std::cout << _queen.total() << std::endl;
+    int     user_input { std::atoi(argv[1]) };
+    Queen   queen(user_input);
 
-    return EXIT_SUCCESS;
+    queen.solve();
+    std::cout << "Total solutions with ";
+    std::cout << user_input << " quens: ";
+    std::cout << queen.total() << std::endl;
+
+    return 0;
 }

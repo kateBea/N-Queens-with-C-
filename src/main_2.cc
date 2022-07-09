@@ -15,20 +15,22 @@ public:
         {}
     
     /*position of m_Main_diag ocuppied by queen at row i, column j*/
-    int main_diag_pos(int i, int j) {return (m_Size-j-1) + i;}
+    int main_diag_pos(int i, int j) { return (m_Size-j-1) + i; }
 
     /*posituion of m_Second_diag ocupied by queen at row i, column j*/
-    int seco_diag_pos(int i, int j) {return i + j;}
+    int seco_diag_pos(int i, int j) { return i + j; }
 
-     /*number of solutions*/
-    unsigned int total() const {return m_Solutions;}
+    void solve() 
+    { 
+        solve(0); 
+        if (not m_Solutions)
+            std::cout << "no solutions found for "
+                      << m_Size << " queens.\n";
+    }
 
-    /*solve queen problem*/
-    void solve() {solve(0);}
-
-    /*print solution*/
     void print()
     {
+        std::cout << "solution number: " << m_Solutions << '\n';
         for (unsigned int i = 0; i < m_Size; ++i)
         {
             for (unsigned int j = 0; j < m_Size; ++j)
@@ -38,13 +40,17 @@ public:
             }
             std::cout << std::endl;
         }
+        std::cout << "-----------------------------\n";
     }
 
 private:
-    /*number of solution*/
     void solve(unsigned int level)
     {
-        if (level == m_Size) {print(); std::cout << std::endl;}
+        if (level == m_Size) 
+        {   ++m_Solutions; 
+            print(); 
+            std::cout << std::endl; 
+        }
         else 
         {
             for (unsigned int col = 0; col < m_Size; ++col)
@@ -79,13 +85,23 @@ private:
     std::vector<bool>   m_Second_diag;  //store queens at secondary diagonal
 };
 
-int main(int, char**)
+const char *str = 
+R"HERE(    usage: main_2 [NUMBER_OF_QUEENS]
+    program need only two parameters\n
+)HERE";
+
+int main(int argc, char **argv)
 {
-    int user_input;
-    std::cin >> user_input;
-    Queen _queen(user_input);
+    if (argc != 2)
+    {
+        std::cout << str;
+        return 0;
+    }
 
-    _queen.solve();
+    int     user_input { std::atoi(argv[1]) };
+    Queen   queen(user_input);
 
-    return EXIT_SUCCESS;
+    queen.solve();
+
+    return 0;
 }
