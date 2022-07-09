@@ -102,5 +102,5 @@ int main(int argc, char **argv)
 
     queen.solve();
 
-    return EXIT_SUCCESS;
+    return 0;
 }
