@@ -16,7 +16,7 @@ chessboard so that no queen threatens another queen
 queens on an n × n chessboard so that no queen threatens another queen
 
 
-Example compile and run
+Example compile and run linux with g++
 
 ```shell
 make

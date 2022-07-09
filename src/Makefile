@@ -1,4 +1,4 @@
-OPTIONS = -Wall -Wextra -Wpedantic -Werror -O2 -std=c++17
+OPTIONS = -Wall -Wextra -O2 -std=c++17
 
 all: main_1 main_2 main_3
 
