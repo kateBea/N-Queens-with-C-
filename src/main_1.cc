@@ -64,7 +64,7 @@ private:
 
 const char *str = 
 R"HERE(    usage: main_1 [NUMBER_OF_QUEENS]
-    program need only two parameters\n
+    program need only one parameters\n
 )HERE";
 
 int main(int argc, char **argv)
